@@ -17,5 +17,10 @@ class UserProvider extends EloquentUserProvider
     {
     }
 
+    public function createModel()
+    {
+        return app(UserModel::class);
+    }
+
 
 }
