@@ -1,0 +1,26 @@
+{
+    "name": "sole-x/auth",
+    "description": "a auth component, use on sole-x products",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Yi",
+            "email": "m@2vy.cc"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "SoleX\\Auth\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\SoleX\\Auth\\AuthServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    }
+}
