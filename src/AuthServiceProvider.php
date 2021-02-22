@@ -29,7 +29,6 @@ class AuthServiceProvider extends ServiceProvider implements DeferrableProvider
         config([
             'auth.providers.users.driver' => 'blog_eloquent',
         ]);
-        $this->app->instance('auth', $this->app->make('auth'));
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
