@@ -4,24 +4,23 @@
 namespace SoleX\Auth;
 
 
+use App\Models\User;
 use Illuminate\Auth\EloquentUserProvider;
-use Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use SoleX\Auth\Models\User;
+use InvalidArgumentException;
+use SoleX\Auth\Models\User as AuthUser;
 
 class UserProvider extends EloquentUserProvider
 {
-    public function updateRememberToken(UserContract $user, $token)
-    {
-    }
-
-    public function retrieveByToken($identifier, $token)
-    {
-    }
+    public const USER_MODELS = [AuthUser::class, User::class];
 
     public function createModel()
     {
-        return app(User::class);
+        $userModels = self::USER_MODELS;
+        foreach ($userModels as $userModel) {
+            if (class_exists($userModel)) {
+                return app($userModel);
+            }
+        }
+        throw new InvalidArgumentException('User Model Not Found!');
     }
-
-
 }

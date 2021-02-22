@@ -4,11 +4,11 @@
 namespace SoleX\Auth;
 
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use SoleX\Auth\Models\User;
 
-class AuthServiceProvider extends ServiceProvider
+class AuthServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public function register()
     {
@@ -19,18 +19,17 @@ class AuthServiceProvider extends ServiceProvider
         });
     }
 
+    public function provides()
+    {
+        return ['auth'];
+    }
+
     public function boot()
     {
         config([
-            'auth.guards.blog'    => [
-                'driver'   => 'session',
-                'provider' => 'blog',
-            ],
-            'auth.providers.blog' => [
-                'driver' => 'blog_eloquent',
-                'model'  => User::class,
-            ],
+            'auth.providers.users.driver' => 'blog_eloquent',
         ]);
+        $this->app->instance('auth', $this->app->make('auth'));
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
