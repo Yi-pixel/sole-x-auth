@@ -17,8 +17,9 @@ class UserProvider extends EloquentUserProvider
     {
         $userModels = self::USER_MODELS;
         foreach ($userModels as $userModel) {
-            if (class_exists($userModel)) {
-                return app($userModel);
+            if (app()->bound($userModel)) {
+                $this->model = get_class(app($userModel));
+                return parent::createModel();
             }
         }
         throw new InvalidArgumentException('User Model Not Found!');
