@@ -6,6 +6,7 @@ namespace SoleX\Auth;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use SoleX\Auth\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,8 +28,9 @@ class AuthServiceProvider extends ServiceProvider
             ],
             'auth.providers.blog' => [
                 'driver' => 'blog_eloquent',
-                'model'  => UserModel::class,
+                'model'  => User::class,
             ],
         ]);
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
