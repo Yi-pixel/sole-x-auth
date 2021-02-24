@@ -5,12 +5,19 @@ namespace SoleX\Auth\Models;
 
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Support\Carbon;
 
+/**
+ * Class User
+ *
+ * @package SoleX\Auth\Models
+ * @mixin Builder
+ */
 class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
 

@@ -66,7 +66,7 @@ class MigrateUserTable extends Migration
             $table->string('password', 200)->comment('密码 Hash');
             $table->string('nickname', 30)->comment('昵称')->unique();
             $table->string('email', 100)->comment('邮箱（可用于登录）')->unique();
-            $table->char('phone', 11)->comment('手机号（可用于登录）')->unique()->default('');
+            $table->char('phone', 11)->comment('手机号（可用于登录）')->unique()->nullable();
             $table->unsignedTinyInteger('level')->default(0)->comment('用户等级，限定规则 0 表示允许评论，但是必须审核');
         });
     }
