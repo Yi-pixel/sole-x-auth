@@ -33,6 +33,6 @@ class AuthServiceProvider extends ServiceProvider implements DeferrableProvider
                 'model'  => User::class,
             ],
         ]);
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
